@@ -7,6 +7,10 @@ export const Table = styled.table`
   box-shadow: 0px 0px 5px #ccc;
   border-radius: 10px;
   margin-top: 20px;
+
+  @media screen and (max-width: 450px) {
+    padding: 10px 0px 10px 5px;
+  }
 `;
 
 export const TableHeadColumn = styled.th<{ width?: number }>`

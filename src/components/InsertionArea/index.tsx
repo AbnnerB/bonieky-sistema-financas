@@ -9,32 +9,26 @@ type InsertionAreaProps = {
 
 export default function InsertionArea({ onAdd }: InsertionAreaProps) {
   const [valueDateInput, setValueDateInput] = useState("");
-  const [valueCategory, setValueCategory] = useState("Alimentação");
+  const [valueCategory, setValueCategory] = useState("food");
   const [valueTextInput, setValueTextInput] = useState("");
-  const [valueInput, setValueInput] = useState("");
-
-  //   const dateActual = new Date();
-
-  //   const objNewItem: Item = {
-  //     date: new Date(valueDateInput),
-  //     category: valueCategory,
-  //     title: valueTextInput,
-  //     value: parseInt(valueInput),
-  //   };
-
-  //funciona padrap
-  //   const objNewItem2: Item = {
-  //     date: new Date(2023, 1, 12),
-  //     category: "food",
-  //     title: "valueTextInput",
-  //     value: 325.45,
-  //   };
-
-  //    ||
+  const [valueInput, setValueInput] = useState(0);
 
   function addNewItem() {
-    if (valueDateInput === "" || valueTextInput === "" || valueInput === "") {
-      return alert("Preencha todos os campos de texto");
+    let errors: string[] = [];
+
+    if (isNaN(new Date(valueDateInput).getTime())) {
+      errors.push("Data inválida!");
+    }
+
+    if (valueTextInput === "") {
+      errors.push("Título vazio!");
+    }
+    if (valueInput <= 0) {
+      errors.push("Valor inválido!");
+    }
+
+    if (errors.length > 0) {
+      return alert(errors.join("\n"));
     }
 
     const [year, month, day] = valueDateInput.split("-");
@@ -44,14 +38,12 @@ export default function InsertionArea({ onAdd }: InsertionAreaProps) {
       date: new Date(formatDate),
       category: valueCategory,
       title: valueTextInput,
-      value: parseInt(valueInput),
+      value: valueInput,
     };
 
     onAdd(objNewItem);
-    setValueInput("");
+    setValueInput(0);
     setValueTextInput("");
-
-    console.log(objNewItem.date);
   }
 
   return (
@@ -89,7 +81,7 @@ export default function InsertionArea({ onAdd }: InsertionAreaProps) {
         <input
           type="number"
           value={valueInput}
-          onChange={(e) => setValueInput(e.target.value)}
+          onChange={(e) => setValueInput(parseFloat(e.target.value))}
           placeholder="0"
         />
       </C.TypeValue>

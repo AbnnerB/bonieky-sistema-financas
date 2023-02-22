@@ -54,7 +54,6 @@ export default function App() {
         <C.HeaderText>Sistema Financeiro</C.HeaderText>
       </C.Header>
       <C.Body>
-        {/* area de informações */}
         <InfoArea
           currentMonth={currentMonth}
           onMonthChange={handleMonthChange}
@@ -62,11 +61,8 @@ export default function App() {
           expense={expense}
         />
 
-        {/* area de inserção */}
-
         <InsertionArea onAdd={handleAddItem} />
 
-        {/* Tabela de itens */}
         <TableArea list={filteredList} />
       </C.Body>
     </C.Container>

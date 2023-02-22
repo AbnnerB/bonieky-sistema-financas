@@ -19,13 +19,13 @@ export const TypeValue = styled.div`
 
   input,
   select {
-    height: 35px;
+    height: 40px;
     padding: 8px 2px;
   }
 `;
 
 export const ButtonAdd = styled.button`
-  height: 35px;
+  height: 40px;
   border: none;
   outline: none;
   padding: 8px 5px;
