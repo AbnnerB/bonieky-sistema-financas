@@ -13,8 +13,6 @@ export default function TableItem({ item }: TableItemProps) {
     currency: "BRL",
   });
 
-  console.log(item.date);
-
   return (
     <C.TableLine>
       <C.TableColumn>{formatDate(item.date)}</C.TableColumn>
